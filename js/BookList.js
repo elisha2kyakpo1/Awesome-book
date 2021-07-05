@@ -36,7 +36,7 @@ function remove(id) {
   objective.remove();
   bookList = bookList.filter((book) => book.id !== id);
   localStorage.setItem('bookList', JSON.stringify(bookList));
-  localStorage.setItem('idCount', JSON).stringify(idCount)
+  localStorage.setItem('idCount', JSON).stringify(idCount);
 }
 
 function hidden() {
@@ -78,7 +78,7 @@ const addBook = () => {
   idCount += 1;
   bookList.push(book);
   localStorage.setItem('bookList', JSON.stringify(bookList));
-  localStorage.setItem('idCount', JSON).stringify(idCount)
+  localStorage.setItem('idCount', JSON).stringify(idCount);
 
   showbook();
 };
