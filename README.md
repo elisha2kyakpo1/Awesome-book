@@ -51,6 +51,12 @@ Github
 
   Twitter: [@elisha1k](https://twitter.com/Elisha1k)
 
+  ## Arturo Ortega
+
+  Linkedin: [Arturo Ortega](https://www.linkedin.com/in/carlos-arturo-ortega-guanipa-39a1a5204/)
+
+  Github: [@eroiyo](https://github.com/eroiyo)
+
 ## Contributions
 
 Contributions, issues and requests are welcome
