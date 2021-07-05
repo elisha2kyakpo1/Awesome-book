@@ -1,39 +1,34 @@
 const bookUl = document.querySelector('.book-list');
 const bookList = [
   {
-    title: 'title',
-    author: 'author',
+    title: 'elisha',
+    author: 'good',
     id: 0,
   },
 ];
 
-function showbook (id) {
-    while (bookUl.hasChildNodes){
-        bookUl.removeChild(0);
-    }
-    for(let i=0; i<bookList.length; i +=1){
-    bookObjective =bookList[i];
-  const bookContainer = document.createElement('div');
-  const bookTitle = document.createElement('h2');
-  const bookAuthor = document.createElement('h2');
-  const removeButton = document.createElement('button');
-  const bar = document.createElement('div');
-  bar.classList.add('bar');
+const titleElement = document.querySelector('.title-ele');
+const authorElement = document.querySelector('.author-ele');
+const removeButton = document.createElement('button');
+const bookContainer = document.createElement('div');
+const bookTitle = document.createElement('h2');
+const bookAuthor = document.createElement('h2');
+function showbook() {
+  for (let i = 0; i < bookList.length; i += 1) {
+    const bookObjective = bookList[i];
+    removeButton.textContent = 'Remove';
+    const bar = document.createElement('hr');
 
-  bookTitle.innerHTML = `<h2>${bookObjective.title}</h2>`;
-  bookAuthor.innerHTML = `<h2>${bookObjective.author}</h2>`;
+    bookTitle.innerHTML = `<h2>${bookObjective.title}</h2>`;
+    bookAuthor.innerHTML = `<h2>${bookObjective.author}</h2>`;
 
-  bookContainer.appendChild(bookTitle);
-  bookContainer.appendChild(bookAuthor);
-  bookContainer.appendChild(removeButton);
-  bookContainer.appendChild(bar);
+    titleElement.appendChild(bookTitle);
+    authorElement.appendChild(bookAuthor);
+    bookContainer.appendChild(removeButton);
+    bookContainer.appendChild(bar);
 
-  bookUl.appendChild(bookContainer);
-    }
-  bookList.forEach((book) => {
-    let allBooks = book[0];
-    return allBooks;
-  });
+    bookUl.appendChild(bookContainer);
+  }
 }
 
 const addBook = () => {
@@ -55,4 +50,9 @@ save.addEventListener('click', (e) => {
   e.preventDefault();
   addBook();
   clear();
+});
+
+removeButton.addEventListener('click', () => {
+  bookUl.removeChild(bookTitle);
+  bookUl.removeChild(bookAuthor);
 });
