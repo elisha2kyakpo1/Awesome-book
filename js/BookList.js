@@ -27,5 +27,3 @@ function showbook (id){
 
     bookUl.appendChild(bookContainer);
 }
-
-showbook(0);
