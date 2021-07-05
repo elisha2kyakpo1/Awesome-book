@@ -12,6 +12,7 @@ function storageAvailable(type) {
 }
 
 let bookList = [];
+let idCount = 1;
 
 if (storageAvailable('localStorage')) {
   bookList = JSON.parse(localStorage.getItem('bookList'));
@@ -23,10 +24,11 @@ if (storageAvailable('localStorage')) {
         id: 0,
       },
     ];
+    idCount = 1;
+} else {
+      idCount =JSON.parse(localStorage.getItem('idCount'))
   }
 }
-
-let idCount = 1;
 const bookUl = document.querySelector('.book-list');
 
 function remove(id) {
@@ -34,6 +36,7 @@ function remove(id) {
   objective.remove();
   bookList = bookList.filter((book) => book.id !== id);
   localStorage.setItem('bookList', JSON.stringify(bookList));
+  localStorage.setItem('idCount', JSON).stringify(idCount)
 }
 
 function hidden() {
@@ -75,6 +78,7 @@ const addBook = () => {
   idCount += 1;
   bookList.push(book);
   localStorage.setItem('bookList', JSON.stringify(bookList));
+  localStorage.setItem('idCount', JSON).stringify(idCount)
 
   showbook();
 };
