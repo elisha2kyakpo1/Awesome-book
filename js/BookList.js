@@ -1,20 +1,41 @@
+function storageAvailable(type) {
+    let storage;
+    try {
+      storage = window[type];
+      const x = '__storage_test__';
+      storage.setItem(x, x);
+      storage.removeItem(x);
+      return true;
+    } catch (e) {
+      return e instanceof DOMException && (e.code === 22 || e.code === 1014 || e.name === 'QuotaExceededError' || e.name === 'NS_ERROR_DOM_QUOTA_REACHED') && (storage && storage.length !== 0);
+    }
+}
+
+if (storageAvailable('localStorage')) {
+    bookList = JSON.parse(localStorage.getItem('bookList'));
+    if (bookList === null) {
+        var bookList = [
+            {
+              title: 'elisha',
+              author: 'good',
+              id: 0,
+            },
+         ];
+    }
+}
+
 let idCount = 1;
 const bookUl = document.querySelector('.book-list');
-let bookList = [
-  {
-    title: 'elisha',
-    author: 'good',
-    id: 0,
-  },
-];
 
 function remove(id) {
   const objective = document.getElementById(id);
   objective.remove();
   bookList = bookList.filter((book) => book.id !== id);
+  localStorage.setItem('bookList', JSON.stringify(bookList));
 }
 
 function showbook() {
+    hidden();
   for (let i = 0; i < bookList.length; i += 1) {
     const removeButton = document.createElement('button');
     const bookContainer = document.createElement('div');
@@ -37,6 +58,12 @@ function showbook() {
   }
 }
 
+function hidden (){
+ while (bookUl.lastElementChild) {
+    bookUl.removeChild(bookUl.lastElementChild);
+    }
+}
+
 const addBook = () => {
   const book = {
     title: document.getElementById('title').value,
@@ -45,6 +72,7 @@ const addBook = () => {
   };
   idCount += 1;
   bookList.push(book);
+  localStorage.setItem('bookList', JSON.stringify(bookList));
 
   showbook();
 };
@@ -60,3 +88,5 @@ save.addEventListener('click', (e) => {
   addBook();
   clear();
 });
+
+showbook();
