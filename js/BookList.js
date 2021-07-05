@@ -49,7 +49,7 @@ function showbook() {
     const bookContainer = document.createElement('div');
     const bookTitle = document.createElement('h2');
     const bookAuthor = document.createElement('h2');
-    bookList[i].id=i;
+    bookList[i].id = i;
     const bookObjective = bookList[i];
     removeButton.textContent = 'Remove';
 
