@@ -1,3 +1,4 @@
+let idCount=1;
 const bookUl = document.querySelector('.book-list');
 const bookList = [
   {
@@ -6,28 +7,28 @@ const bookList = [
     id: 0,
   },
 ];
-
+function showbook() {
 const titleElement = document.querySelector('.title-ele');
 const authorElement = document.querySelector('.author-ele');
 const removeButton = document.createElement('button');
 const bookContainer = document.createElement('div');
 const bookTitle = document.createElement('h2');
 const bookAuthor = document.createElement('h2');
-function showbook() {
   for (let i = 0; i < bookList.length; i += 1) {
     const bookObjective = bookList[i];
     removeButton.textContent = 'Remove';
-    const bar = document.createElement('hr');
 
-    bookTitle.innerHTML = `<h2>${bookObjective.title}</h2>`;
-    bookAuthor.innerHTML = `<h2>${bookObjective.author}</h2>`;
+    bookTitle.textContent = bookObjective.title;
+    bookAuthor.textContent = bookObjective.author;
 
-    titleElement.appendChild(bookTitle);
-    authorElement.appendChild(bookAuthor);
+    bookContainer.appendChild(bookTitle);
+    bookContainer.appendChild(bookAuthor);
     bookContainer.appendChild(removeButton);
-    bookContainer.appendChild(bar);
-
+    bookContainer.setAttribute("id",bookObjective.id)
     bookUl.appendChild(bookContainer);
+    removeButton.onclick = function () {
+        remove(bookObjective.id)
+    };
   }
 }
 
@@ -35,8 +36,11 @@ const addBook = () => {
   const book = {
     title: document.getElementById('title').value,
     author: document.getElementById('author').value,
+    id: idCount
   };
+  idCount += 1;
   bookList.push(book);
+  console.log(bookList)
   showbook();
 };
 
@@ -52,7 +56,10 @@ save.addEventListener('click', (e) => {
   clear();
 });
 
-removeButton.addEventListener('click', () => {
-  bookUl.removeChild(bookTitle);
-  bookUl.removeChild(bookAuthor);
-});
+function remove(id) {
+ const objective = document.getElementById(id);
+ objective.remove();
+ for(let i=0; i < bookUl.length; i +=1){
+     bookUl =bookUl.filter(book => book.id !=id)
+ }
+}
