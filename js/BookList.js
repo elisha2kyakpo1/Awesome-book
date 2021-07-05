@@ -25,8 +25,8 @@ if (storageAvailable('localStorage')) {
       },
     ];
     idCount = 1;
-} else {
-      idCount =JSON.parse(localStorage.getItem('idCount'))
+  } else {
+    idCount = JSON.parse(localStorage.getItem('idCount'));
   }
 }
 const bookUl = document.querySelector('.book-list');
