@@ -12,7 +12,6 @@ function storageAvailable(type) {
 }
 
 let bookList = [];
-let idCount = 1;
 
 if (storageAvailable('localStorage')) {
   bookList = JSON.parse(localStorage.getItem('bookList'));
@@ -24,11 +23,10 @@ if (storageAvailable('localStorage')) {
         id: 0,
       },
     ];
-    idCount = 1;
-} else {
-      idCount =JSON.parse(localStorage.getItem('idCount'))
   }
 }
+
+let idCount = bookList.length;
 const bookUl = document.querySelector('.book-list');
 
 function remove(id) {
@@ -36,7 +34,6 @@ function remove(id) {
   objective.remove();
   bookList = bookList.filter((book) => book.id !== id);
   localStorage.setItem('bookList', JSON.stringify(bookList));
-  localStorage.setItem('idCount', JSON).stringify(idCount);
 }
 
 function hidden() {
@@ -52,6 +49,7 @@ function showbook() {
     const bookContainer = document.createElement('div');
     const bookTitle = document.createElement('h2');
     const bookAuthor = document.createElement('h2');
+    bookList[i].id=i;
     const bookObjective = bookList[i];
     removeButton.textContent = 'Remove';
 
@@ -78,7 +76,6 @@ const addBook = () => {
   idCount += 1;
   bookList.push(book);
   localStorage.setItem('bookList', JSON.stringify(bookList));
-  localStorage.setItem('idCount', JSON).stringify(idCount);
 
   showbook();
 };
