@@ -170,7 +170,6 @@ class LinkedList {
         id: this.head.id,
         author: this.head.author,
       };
-  
       information.push(book);
       let currentNode = this.head.nextNode;
       while(currentNode!==null){
@@ -178,6 +177,7 @@ class LinkedList {
       currentNode = currentNode.nextNode;
       }
     }
+    return information
   }
 
   getInformation(information) {
