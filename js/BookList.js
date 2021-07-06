@@ -67,12 +67,11 @@ class Node {
     return null;
   }
 
-  showInformation(id) {
+  showInformation() {
     const removeButton = document.createElement('button');
     const bookContainer = document.createElement('div');
     const bookTitle = document.createElement('h2');
     const bookAuthor = document.createElement('h2');
-    this.id = id;
     removeButton.textContent = 'Remove';
 
     bookTitle.textContent = this.title;
@@ -84,9 +83,9 @@ class Node {
     bookContainer.setAttribute('id', this.id);
     bookUl.appendChild(bookContainer);
     removeButton.onclick = () => {
-      const objective = document.getElementById(id);
+      const objective = document.getElementById(this.id);
       objective.remove();
-      bookList.removebyId(id);
+      bookList.removebyId(this.id);
       let information = 0;
       if (bookList.size > 0) {
         information = bookList.saveInformation();
@@ -96,7 +95,7 @@ class Node {
       localStorage.setItem('information', JSON.stringify(information));
     };
     if (this.nextNode !== null) {
-      this.nextNode.showInformation(id + 1);
+      this.nextNode.showInformation();
     }
   }
 }
@@ -146,10 +145,8 @@ class LinkedList {
   }
 
   removebyId(id) {
-    if (id === 0) {
       if(this.head!==null){
       this.head = this.head.nextNode;
-      }
       return true;
     }
     this.size -= 1;
@@ -212,8 +209,6 @@ if (storageAvailable('localStorage')) {
   }
 }
 
-let idCount = bookList.size;
-
 function hidden() {
   while (bookUl.lastElementChild) {
     bookUl.removeChild(bookUl.lastElementChild);
@@ -228,9 +223,8 @@ function showbook() {
 const addBook = () => {
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
-  const id = idCount;
+  const id = Date();
   bookList.add(title, id, author);
-  idCount += 1;
   const information = bookList.saveInformation();
   localStorage.setItem('information', JSON.stringify(information));
   showbook();
