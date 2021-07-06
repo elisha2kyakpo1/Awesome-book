@@ -1,68 +1,65 @@
+/* eslint max-classes-per-file: ["error", 2] */
 class Node {
-  constructor(title, id, author, next_node = null) {
+  constructor(title, id, author, nextNode = null) {
     this.title = title;
-    this.id = id
-    this.author = author
-    this.next_node = next_node;
+    this.id = id;
+    this.author = author;
+    this.nextNode = nextNode;
   }
+
   add(title, id, author) {
-    if (this.next_node === null) {
-      this.next_node = new Node(title, id, author, null);
+    if (this.nextNode === null) {
+      this.nextNode = new Node(title, id, author, null);
     } else {
-      this.next_node.add(title, id, author, null);
+      this.nextNode.add(title, id, author, null);
     }
   }
+
   get(index, count) {
-    if (index == count) {
+    if (index === count) {
       return this.title;
-    } if (this.next_node !== null) {
-      return this.next_node.get(index, count + 1)
-    } else {
-      return null;
+    } if (this.nextNode !== null) {
+      return this.nextNode.get(index, count + 1);
     }
   }
-  get_node(index, count) {
-    if (index == count) {
+
+  getNode(index, count) {
+    if (index === count) {
       return this;
-    } if (this.next_node !== null) {
-      return this.next_node.get(index, count + 1)
-    } else {
-      return null;
+    } if (this.nextNode !== null) {
+      return this.nextNode.get(index, count + 1);
     }
   }
+
   remove(index, count, old) {
-    if (index == count) {
-      old.next_node = this.next_node;
+    if (index === count) {
+      old.nextNode = this.nextNode;
       return true;
-    } if (this.next_node !== null) {
-      return this.next_node.remove(index, count + 1, this);
-    } else {
-      return null;
+    } if (this.nextNode !== null) {
+      return this.nextNode.remove(index, count + 1, this);
     }
   }
+
   removebyId(id, old) {
     if (this.id === id) {
-      old.next_node = this.next_node;
+      old.nextNode = this.nextNode;
       return true;
-    } if (this.next_node !== null) {
-      return this.next_node.removebyId(id, this);
-    } else {
-      return null;
+    } if (this.nextNode !== null) {
+      return this.nextNode.removebyId(id, this);
     }
   }
+
   addAt(index, count, value, old) {
-    if (index == count) {
-      let node = new Node(value, this);
-      old.next_node = node;
+    if (index === count) {
+      const node = new Node(value, this);
+      old.nextNode = node;
       return true;
-    } if (this.next_node !== null) {
-      return this.next_node.addAt(index, count + 1, value, this);
-    } else {
-      return null;
+    } if (this.nextNode !== null) {
+      return this.nextNode.addAt(index, count + 1, value, this);
     }
   }
+
   showInformation(id) {
-    console.log(this)
     const removeButton = document.createElement('button');
     const bookContainer = document.createElement('div');
     const bookTitle = document.createElement('h2');
@@ -80,12 +77,13 @@ class Node {
     bookUl.appendChild(bookContainer);
     removeButton.onclick = () => {
       remove(this.id);
-    }
-    if (this.next_node !== null) {
-      this.next_node.showInformation(id + 1);
+    };
+    if (this.nextNode !== null) {
+      this.nextNode.showInformation(id + 1);
     }
   }
 }
+
 class LinkedList {
   // setup head and tail
   constructor() {
@@ -101,64 +99,73 @@ class LinkedList {
     }
     this.size += 1;
   }
+
   addAt(index, title, id, author) {
     if (this.head !== null) {
-      if (index == 0) {
-        this.head = new Node(title, id, author, this.head.next_node);
+      if (index === 0) {
+        this.head = new Node(title, id, author, this.head.nextNode);
       } else {
         this.size += 1;
         return this.head.addAt(index, 0, title, id, author, this.head);
       }
     } else {
-      this.add(value)
+      this.add(title, id, author);
     }
   }
+
   // Get at index
   get(index) {
     return this.head.get(index, 0);
   }
-  get_node(index) {
-    return this.head.get_node(index, 0);
+
+  getNode(index) {
+    return this.head.getNode(index, 0);
   }
+
   remove(index) {
-    this.size = this.size - 1;
+    this.size -= 1;
     return this.head.remove(index, 0, this.head);
   }
+
   removebyId(id) {
-    if(id===0){
-      this.head=null;
+    if (id === 0) {
+      this.head = null;
       return true;
     }
-    this.size = this.size - 1;
+    this.size -= 1;
     return this.head.removebyId(id, this.head);
   }
+
   showInformation() {
     if (this.head !== null) {
       this.head.showInformation(0);
     }
   }
+
   saveInformation() {
-    let information = [];
-    if (this.head!=null){
-    let book = {
-      title: this.head.title,
-      id: this.head.id,
-      author: this.head.author,
-    }
-    information.push(book);
-    let currentNode = this.head.next_node;
-    while (currentNode !== null) {
-      book.title = currentNode.title;
-      book.id = currentNode.id;
-      book.author = currentNode.author;
+    const information = [];
+    if (this.head != null) {
+      const book = {
+        title: this.head.title,
+        id: this.head.id,
+        author: this.head.author,
+      };
+
       information.push(book);
-      currentNode = currentNode.next_node;
+      let currentNode = this.head.nextNode;
+      while (currentNode !== null) {
+        book.title = currentNode.title;
+        book.id = currentNode.id;
+        book.author = currentNode.author;
+        information.push(book);
+        currentNode = currentNode.nextNode;
+      }
     }
-  }
     return information;
   }
-  getInformation(information){
-    information.forEach(book => {
+
+  getInformation(information) {
+    information.forEach((book) => {
       this.add(book.title, book.id, book.author);
     });
   }
@@ -177,14 +184,14 @@ function storageAvailable(type) {
   }
 }
 
-let bookList = new LinkedList;
+let bookList = new LinkedList();
 
 if (storageAvailable('localStorage')) {
   const information = JSON.parse(localStorage.getItem('information'));
   if (information === null) {
-    bookList = new LinkedList()
-    bookList.add("Elisha", 0 ,"good")
-  }else{
+    bookList = new LinkedList();
+    bookList.add('Elisha', 0, 'good');
+  } else {
     bookList.getInformation(information);
   }
 }
@@ -195,11 +202,11 @@ const bookUl = document.querySelector('.book-list');
 function remove(id) {
   const objective = document.getElementById(id);
   objective.remove();
-  bookList.removebyId(id)
-  let information= 0;
-  if(bookList.size > 0){
-  information = bookList.saveInformation();
-  }else {
+  bookList.removebyId(id);
+  let information = 0;
+  if (bookList.size > 0) {
+    information = bookList.saveInformation();
+  } else {
     information = [];
   }
   localStorage.setItem('information', JSON.stringify(information));
@@ -216,12 +223,11 @@ function showbook() {
   bookList.showInformation();
 }
 
-
 const addBook = () => {
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
   const id = idCount;
-  bookList.add(title, id, author)
+  bookList.add(title, id, author);
   idCount += 1;
   const information = bookList.saveInformation();
   localStorage.setItem('information', JSON.stringify(information));
