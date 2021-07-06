@@ -147,7 +147,9 @@ class LinkedList {
 
   removebyId(id) {
     if (id === 0) {
-      this.head = null;
+      if(this.head!==null){
+      this.head = this.head.nextNode;
+      }
       return true;
     }
     this.size -= 1;
@@ -161,25 +163,21 @@ class LinkedList {
   }
 
   saveInformation() {
-    const information = [];
+    let information = [];
     if (this.head != null) {
-      const book = {
+      let book = {
         title: this.head.title,
         id: this.head.id,
         author: this.head.author,
       };
-
+  
       information.push(book);
       let currentNode = this.head.nextNode;
-      while (currentNode !== null) {
-        book.title = currentNode.title;
-        book.id = currentNode.id;
-        book.author = currentNode.author;
-        information.push(book);
-        currentNode = currentNode.nextNode;
+      while(currentNode!==null){
+      information.push(currentNode);
+      currentNode = currentNode.nextNode;
       }
     }
-    return information;
   }
 
   getInformation(information) {
@@ -251,3 +249,4 @@ save.addEventListener('click', (e) => {
 });
 
 showbook();
+
