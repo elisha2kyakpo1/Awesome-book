@@ -1,4 +1,7 @@
 /* eslint max-classes-per-file: ["error", 2] */
+let bookList;
+const bookUl = document.querySelector('.book-list');
+
 class Node {
   constructor(title, id, author, nextNode = null) {
     this.title = title;
@@ -21,6 +24,7 @@ class Node {
     } if (this.nextNode !== null) {
       return this.nextNode.get(index, count + 1);
     }
+    return null;
   }
 
   getNode(index, count) {
@@ -29,15 +33,17 @@ class Node {
     } if (this.nextNode !== null) {
       return this.nextNode.get(index, count + 1);
     }
+    return null;
   }
 
-  remove(index, count, old) {
+  removeNode(index, count, old) {
     if (index === count) {
       old.nextNode = this.nextNode;
       return true;
     } if (this.nextNode !== null) {
       return this.nextNode.remove(index, count + 1, this);
     }
+    return null;
   }
 
   removebyId(id, old) {
@@ -47,6 +53,7 @@ class Node {
     } if (this.nextNode !== null) {
       return this.nextNode.removebyId(id, this);
     }
+    return null;
   }
 
   addAt(index, count, value, old) {
@@ -57,6 +64,7 @@ class Node {
     } if (this.nextNode !== null) {
       return this.nextNode.addAt(index, count + 1, value, this);
     }
+    return null;
   }
 
   showInformation(id) {
@@ -76,7 +84,16 @@ class Node {
     bookContainer.setAttribute('id', this.id);
     bookUl.appendChild(bookContainer);
     removeButton.onclick = () => {
-      remove(this.id);
+      const objective = document.getElementById(id);
+      objective.remove();
+      bookList.removebyId(id);
+      let information = 0;
+      if (bookList.size > 0) {
+        information = bookList.saveInformation();
+      } else {
+        information = [];
+      }
+      localStorage.setItem('information', JSON.stringify(information));
     };
     if (this.nextNode !== null) {
       this.nextNode.showInformation(id + 1);
@@ -111,6 +128,7 @@ class LinkedList {
     } else {
       this.add(title, id, author);
     }
+    return null;
   }
 
   // Get at index
@@ -171,6 +189,8 @@ class LinkedList {
   }
 }
 
+bookList = new LinkedList();
+
 function storageAvailable(type) {
   let storage;
   try {
@@ -184,8 +204,6 @@ function storageAvailable(type) {
   }
 }
 
-let bookList = new LinkedList();
-
 if (storageAvailable('localStorage')) {
   const information = JSON.parse(localStorage.getItem('information'));
   if (information === null) {
@@ -197,20 +215,6 @@ if (storageAvailable('localStorage')) {
 }
 
 let idCount = bookList.size;
-const bookUl = document.querySelector('.book-list');
-
-function remove(id) {
-  const objective = document.getElementById(id);
-  objective.remove();
-  bookList.removebyId(id);
-  let information = 0;
-  if (bookList.size > 0) {
-    information = bookList.saveInformation();
-  } else {
-    information = [];
-  }
-  localStorage.setItem('information', JSON.stringify(information));
-}
 
 function hidden() {
   while (bookUl.lastElementChild) {
