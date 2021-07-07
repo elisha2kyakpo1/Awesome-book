@@ -71,11 +71,10 @@ class Node {
   showInformation() {
     const removeButton = document.createElement('button');
     const bookContainer = document.createElement('tr');
-    let title = document.createElement("td");
-    let author = document.createElement("td");
-    const buttonTd =document.createElement('td');
+    const title = document.createElement('td');
+    const author = document.createElement('td');
+    const buttonTd = document.createElement('td');
     removeButton.textContent = 'Remove';
-    
 
     removeButton.classList.add('delete');
 
@@ -84,7 +83,7 @@ class Node {
 
     bookContainer.appendChild(title);
     bookContainer.appendChild(author);
-    buttonTd.appendChild(removeButton)
+    buttonTd.appendChild(removeButton);
     bookContainer.appendChild(buttonTd);
     tableContainer.appendChild(bookContainer);
     bookContainer.setAttribute('id', this.id);

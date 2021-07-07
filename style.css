@@ -1,5 +1,6 @@
 body {
-  margin: 30px;
+  margin: 0;
+  padding: 0;
 }
 
 .sub {
@@ -13,10 +14,20 @@ body {
   font-size: 1.2rem;
 }
 
-.form,
-.book-list {
+.form-data,
+.book-list,
+.table-data {
   justify-content: center;
   align-items: center;
+}
+
+th {
+  font-size: 1.2rem;
+}
+
+.table {
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 .delete {
@@ -25,6 +36,5 @@ body {
   border: none;
   background-color: red;
   color: #fff;
-  width: 100%;
   padding: 5px 10px;
 }
