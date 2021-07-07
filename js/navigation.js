@@ -6,26 +6,31 @@ const bookSection = document.querySelector('.book-section');
 const formButton = document.querySelector('.form-button');
 const formSection = document.querySelector('.form-section');
 const contactButton = document.querySelector('.contact-button');
-const contactSection = document.querySelector('.contact-section');
+const contactSection = document.querySelector('.contact-div');
 const timezone = document.querySelector('.timezone');
 
 timezone.textContent = DateTime.local().toLocaleString(DateTime.DATETIME_FULL_WITH_SECONDS);
 
-listButton.addEventListener('click', () => {
-  timezone.textContent = DateTime.local().toLocaleString(DateTime.DATETIME_FULL_WITH_SECONDS);
-  bookSection.style.display = 'block';
-  formSection.style.display = 'none';
-  contactSection.style.display = 'none';
-});
 
-formButton.addEventListener('click', () => {
+
+formButton.addEventListener('click', (e) => {
+  e.preventDefault();
   timezone.textContent = DateTime.local().toLocaleString(DateTime.DATETIME_FULL_WITH_SECONDS);
   formSection.style.display = 'block';
   bookSection.style.display = 'none';
   contactSection.style.display = 'none';
 });
 
-contactButton.addEventListener('click', () => {
+listButton.addEventListener('click' , (e) => {
+  e.preventDefault();
+  timezone.textContent = DateTime.local().toLocaleString(DateTime.DATETIME_FULL_WITH_SECONDS);
+  formSection.style.display = 'none';
+  bookSection.style.display = 'block';
+  contactSection.style.display = 'none';
+});
+
+contactButton.addEventListener('click', (e) => {
+  e.preventDefault();
   timezone.textContent = DateTime.local().toLocaleString(DateTime.DATETIME_FULL_WITH_SECONDS);
   formSection.style.display = 'none';
   bookSection.style.display = 'none';

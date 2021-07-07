@@ -68,12 +68,27 @@ th {
   left: 0;
 }
 
-.book-section {
-  display: none;
-}
-
 .timezone {
   margin-top: 15px;
   margin-left: auto;
   margin-right: 15px;
+}
+
+.hidden{
+  display: none;
+}
+
+.contact-div{
+  display: none;
+}
+
+.book-section{
+  display: none;
+}
+
+.table{
+  max-height: 60vh;
+  overflow-y: scroll;
+  margin-left: auto;
+  margin-right: auto;
 }
