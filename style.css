@@ -78,6 +78,10 @@ th {
   display: none;
 }
 
+.visible{
+  display: block;
+}
+
 .contact-div{
   display: none;
 }
