@@ -70,21 +70,23 @@ class Node {
 
   showInformation() {
     const removeButton = document.createElement('button');
-    const bookContainer = document.createElement('div');
+    const bookContainer = document.createElement('tr');
+    let title = document.createElement("td");
+    let author = document.createElement("td");
+    const buttonTd =document.createElement('td');
     removeButton.textContent = 'Remove';
+    
 
     removeButton.classList.add('delete');
 
-    const thead = document.createElement('th');
-    const trow = document.createElement('tr');
-    const tbody = document.createElement('tbody');
-    tbody.appendChild(trow);
-    tableContainer.appendChild(thead);
-    tableContainer.appendChild(trow);
+    title.innerHTML = `<td>${this.title}</td>`;
+    author.innerHTML = `<td>${this.author}</td>`;
 
-    trow.innerHTML = `<td>${this.title} ${this.author}</td>`;
-
-    bookContainer.appendChild(removeButton);
+    bookContainer.appendChild(title);
+    bookContainer.appendChild(author);
+    buttonTd.appendChild(removeButton)
+    bookContainer.appendChild(buttonTd);
+    tableContainer.appendChild(bookContainer);
     bookContainer.setAttribute('id', this.id);
     bookUl.appendChild(bookContainer);
     removeButton.onclick = () => {
