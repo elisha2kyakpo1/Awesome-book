@@ -38,3 +38,21 @@ th {
   color: #fff;
   padding: 5px 10px;
 }
+
+.books-nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+}
+
+.book-section{
+  display: none;
+}
+
+.timezone{
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: 15px
+}
