@@ -1,3 +1,30 @@
 body {
   margin: 30px;
 }
+
+.sub {
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 0;
+}
+
+.label {
+  font-size: 1.2rem;
+}
+
+.form,
+.book-list {
+  justify-content: center;
+  align-items: center;
+}
+
+.delete {
+  outline: none;
+  border-radius: 3px;
+  border: none;
+  background-color: red;
+  color: #fff;
+  width: 100%;
+  padding: 5px 10px;
+}

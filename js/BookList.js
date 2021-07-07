@@ -1,6 +1,7 @@
 /* eslint max-classes-per-file: ["error", 2] */
 let bookList;
 const bookUl = document.querySelector('.book-list');
+const tableContainer = document.querySelector('.tbody');
 
 class Node {
   constructor(title, id, author, nextNode = null) {
@@ -70,15 +71,19 @@ class Node {
   showInformation() {
     const removeButton = document.createElement('button');
     const bookContainer = document.createElement('div');
-    const bookTitle = document.createElement('h2');
-    const bookAuthor = document.createElement('h2');
     removeButton.textContent = 'Remove';
 
-    bookTitle.textContent = this.title;
-    bookAuthor.textContent = this.author;
+    removeButton.classList.add('delete');
 
-    bookContainer.appendChild(bookTitle);
-    bookContainer.appendChild(bookAuthor);
+    const thead = document.createElement('th');
+    const trow = document.createElement('tr');
+    const tbody = document.createElement('tbody');
+    tbody.appendChild(trow);
+    tableContainer.appendChild(thead);
+    tableContainer.appendChild(trow);
+
+    trow.innerHTML = `<td>${this.title} ${this.author}</td>`;
+
     bookContainer.appendChild(removeButton);
     bookContainer.setAttribute('id', this.id);
     bookUl.appendChild(bookContainer);
