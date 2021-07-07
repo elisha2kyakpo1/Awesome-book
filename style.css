@@ -14,6 +14,20 @@ body {
   font-size: 1.2rem;
 }
 
+.contact-section div {
+  margin: auto;
+  margin-top: 50px;
+}
+
+.contact-section div h4 {
+  font-weight: 500;
+}
+
+.contact-section div ul li {
+  list-style-type: none;
+}
+
+.footer,
 .form-data,
 .book-list,
 .table-data {
@@ -39,7 +53,7 @@ th {
   padding: 5px 10px;
 }
 
-.books-nav{
+.books-nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -47,12 +61,19 @@ th {
   z-index: 500;
 }
 
-.book-section{
+.footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.book-section {
   display: none;
 }
 
-.timezone{
+.timezone {
   margin-top: 15px;
   margin-left: auto;
-  margin-right: 15px
+  margin-right: 15px;
 }
