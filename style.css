@@ -87,8 +87,9 @@ th {
 }
 
 .table{
-  max-height: 60vh;
+  height: 65vh;
   overflow-y: scroll;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
