@@ -15,7 +15,6 @@ timezone.textContent = DateTime.local().toLocaleString(DateTime.DATETIME_FULL_WI
 
 formButton.addEventListener('click', (e) => {
   e.preventDefault();
-  timezone.textContent = DateTime.local().toLocaleString(DateTime.DATETIME_FULL_WITH_SECONDS);
   formSection.style.display = 'block';
   bookSection.style.display = 'none';
   contactSection.style.display = 'none';
@@ -23,7 +22,6 @@ formButton.addEventListener('click', (e) => {
 
 listButton.addEventListener('click' , (e) => {
   e.preventDefault();
-  timezone.textContent = DateTime.local().toLocaleString(DateTime.DATETIME_FULL_WITH_SECONDS);
   formSection.style.display = 'none';
   bookSection.style.display = 'block';
   contactSection.style.display = 'none';
@@ -31,8 +29,15 @@ listButton.addEventListener('click' , (e) => {
 
 contactButton.addEventListener('click', (e) => {
   e.preventDefault();
-  timezone.textContent = DateTime.local().toLocaleString(DateTime.DATETIME_FULL_WITH_SECONDS);
   formSection.style.display = 'none';
   bookSection.style.display = 'none';
   contactSection.style.display = 'block';
 });
+
+
+function time(){
+  timezone.textContent = DateTime.local().toLocaleString(DateTime.DATETIME_FULL_WITH_SECONDS);
+  setTimeout(time, 1000);
+}
+
+time();
