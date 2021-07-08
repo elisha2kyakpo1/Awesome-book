@@ -11,8 +11,6 @@ const timezone = document.querySelector('.timezone');
 
 timezone.textContent = DateTime.local().toLocaleString(DateTime.DATETIME_FULL_WITH_SECONDS);
 
-
-
 formButton.addEventListener('click', (e) => {
   e.preventDefault();
   formSection.style.display = 'block';
@@ -20,7 +18,7 @@ formButton.addEventListener('click', (e) => {
   contactSection.style.display = 'none';
 });
 
-listButton.addEventListener('click' , (e) => {
+listButton.addEventListener('click', (e) => {
   e.preventDefault();
   formSection.style.display = 'none';
   bookSection.style.display = 'block';
@@ -34,8 +32,7 @@ contactButton.addEventListener('click', (e) => {
   contactSection.style.display = 'block';
 });
 
-
-function time(){
+function time() {
   timezone.textContent = DateTime.local().toLocaleString(DateTime.DATETIME_FULL_WITH_SECONDS);
   setTimeout(time, 1000);
 }

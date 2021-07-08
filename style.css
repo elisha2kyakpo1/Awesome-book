@@ -39,11 +39,6 @@ th {
   font-size: 1.2rem;
 }
 
-.table {
-  border: 1px solid black;
-  border-radius: 5px;
-}
-
 .delete {
   outline: none;
   border-radius: 3px;
@@ -74,23 +69,23 @@ th {
   margin-right: 15px;
 }
 
-.hidden{
+.hidden {
   display: none;
 }
 
-.visible{
+.visible {
   display: block;
 }
 
-.contact-div{
+.contact-div {
   display: none;
 }
 
-.book-section{
+.book-section {
   display: none;
 }
 
-.table{
+.table {
   height: 67vh;
   overflow-y: scroll;
   width: 100%;
