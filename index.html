@@ -11,10 +11,23 @@
 </head>
 
 <body>
-  <div class="main-container mt-5">
-    <h1 class="text-center">Awesome Books</h1>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light books-nav">
+    <a class="navbar-brand" href="#">Awesome Books</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav navbar-default ml-auto">
+        <a class="nav-item nav-link list-button visible" href="#">List</a>
+        <a class="nav-item nav-link form-button visible" href="#">Add New</a>
+        <a class="nav-item nav-link contact-button visible" href="#">Contact</a>
+      </div>
+    </div>
+  </nav>
+</header>
+  <div class="main-container mt-5 table">
+    <div class="d-flex"><h2 class="timezone"></h2></div>
+    <div class="book-section"><h1 class="text-center">Awesome Books</h1>
     <div class="d-flex table-data">
-      <table class="table table-striped w-50">
+      <table class=" table-striped w-50">
         <thead>
           <tr>
             <th scope="col">Book</th>
@@ -27,7 +40,9 @@
         </tbody>
       </table>
     </div>
-    <hr class="py-1">
+  </div>
+  <div class="form-section">
+    <hr class="py-1 w-50 text-center">
     <form class="d-flex form-data mt-5">
       <div class="w-50">
         <h2>Add your book</h2>
@@ -38,8 +53,28 @@
         <input type="submit" class="btn-primary w-100 sub" id="submit"></input>
       </div>
     </form>
-    <script src="js/BookList.js"></script>
   </div>
+
+  <section class="contact-section d-flex">
+    <div class="contact-div">
+      <h4>CONTACT US</h4>
+      <p>For equeries, please reach out on the address below</p>
+      <ul>
+        <li>Website:<a href="#">www.teamwork.com</a></li>
+      <li>Call sales:<a href="#">+260 000 334 453 </a></li>
+      <li>Send us a mail:<a href="#">info.gmail.com</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="footer d-flex bg-light py-5">
+    <div>
+      <h4>Developed and serviced by <span><a href="#">TeamWork</a></span></h4>
+      <p>Copyrights &copy2021, All Rights reserved</p>
+    </div>
+  </footer>
+    <script src="js/navigation.js" type="module"></script>
+    <script src="js/BookList.js"></script>
 </body>
 
 </html>
